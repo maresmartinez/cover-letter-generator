@@ -1,0 +1,21 @@
+<header>
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container">
+      <a class="navbar-brand" href="#">Cover Letter Generator</a>
+    <button class="navbar-toggler collapsed" type="button" data-toggle="collapse" (click)="isCollapsed = !isCollapsed"data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav"  [collapse]="isCollapsed">
+      <ul class="navbar-nav">
+        <li class="nav-item active">
+          <a class="nav-link"  routerLink="/" routerLinkActive="active"
+          [routerLinkActiveOptions]="{exact: true}">Home <span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/about" routerLinkActive="active" >About</a>
+        </li>
+      </ul>
+    </div>
+    </div>
+  </nav>
+</header>
