@@ -41,7 +41,8 @@
     <div [hidden]="jobTitle.valid || jobTitle.pristine" class="alert alert-danger">Job Title is
       Required</div>
   </div>
-  <div class="form-group">
+  <!-- TODO: Add recruiter info back when you figure out how to do new lines -->
+  <!-- <div class="form-group">
     <label for="recruiterName">Recruiter Name</label>
     <input type="text" class="form-control" id="jobTitle" [(ngModel)]="info.recruiterName" name="recruiterName"
       #recruiterName="ngModel">
@@ -50,7 +51,6 @@
     <label for="recruiterTitle">Rectruiter Title</label>
     <input type="text" class="form-control" id="recruiterTitle" [(ngModel)]="info.recruiterTitle" name="recruiterTitle"
       #recruiterTitle="ngModel">
-  </div>
-  <button type="submit" class="btn btn-primary" (click)="newInfo()"
-    [disabled]="!coverLetterForm.form.valid">Submit</button>
+  </div> -->
+  <button type="submit" class="btn btn-primary" (click)="onSubmit()" [disabled]="!coverLetterForm.form.valid">Generate Document</button>
 </form>
