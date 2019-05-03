@@ -1,9 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { CoverLetterInfo } from '../../models/CoverLetterInfo';
 import Docxtemplater from 'docxtemplater';
 import JSZip from 'jszip';
 import JSZipUtils from 'jszip-utils';
 import { saveAs } from 'file-saver';
+import { UploadServiceService } from '../services/upload-service.service';
 
 @Component({
   selector: 'app-coverletterform',
@@ -12,12 +13,39 @@ import { saveAs } from 'file-saver';
 })
 export class CoverletterformComponent implements OnInit {
 
+  @ViewChild('fileInput') fileInput;
   info: CoverLetterInfo;
+  fileUrl: any;
+  files: any[];
 
-  constructor() { }
+  constructor(private uploadService: UploadServiceService) { }
 
   ngOnInit() {
     this.info = new CoverLetterInfo();
+  }
+
+  addFile() {
+    const fi = this.fileInput.nativeElement;
+    if (fi.files && fi.files[0]) {
+      const fileToUpload = fi.files[0];
+      this.uploadService
+        .upload(fileToUpload)
+        .subscribe(res => {
+          console.log(res);
+        });
+    }
+    console.log(this.fileInput);
+  }
+
+  fileChange(event) {
+    this.fileInput = event.target.files[0];
+
+    const reader = new FileReader();
+    this.fileUrl = event.target.files;
+    reader.readAsDataURL(event.target.files[0]);
+    reader.onload = e => {
+      this.fileUrl = reader.result;
+    }
   }
 
   loadFile(url, callback) {
@@ -25,7 +53,7 @@ export class CoverletterformComponent implements OnInit {
   }
 
   onSubmit() {
-    this.loadFile('assets/application.docx', (error, content) => {
+    this.loadFile(this.fileUrl, (error, content) => {
       if (error) { throw error; }
       const zip = new JSZip(content);
       const doc = new Docxtemplater().loadZip(zip);

@@ -14,6 +14,7 @@ import { CollapseModule } from 'ngx-bootstrap/collapse';
 import { AboutComponent } from './components/pages/about/about.component';
 import { HomeComponent } from './components/pages/home/home.component';
 import { CoverletterformComponent } from './components/coverletterform/coverletterform.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import { CoverletterformComponent } from './components/coverletterform/coverlett
     TooltipModule.forRoot(),
     ModalModule.forRoot(),
     CollapseModule.forRoot(),
-    FormsModule
+    FormsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

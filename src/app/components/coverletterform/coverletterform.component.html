@@ -1,6 +1,10 @@
 <p class="lead">Enter the information for the job application below.</p>
 <form #coverLetterForm="ngForm">
   <div class="form-group">
+    <label for="fileInput">Cover Letter Template <span class="text-danger">*</span></label><br>
+    <input #fileInput id="fileInput" type="file" (change)="fileChange($event)" />
+  </div>
+  <div class="form-group">
     <label for="companyName">Company Name <span class="text-danger">*</span></label>
     <input type="text" class="form-control" id="companyName" [(ngModel)]="info.companyName" name="companyName"
       #companyName="ngModel" required>
@@ -52,5 +56,6 @@
     <input type="text" class="form-control" id="recruiterTitle" [(ngModel)]="info.recruiterTitle" name="recruiterTitle"
       #recruiterTitle="ngModel">
   </div> -->
-  <button type="submit" class="btn btn-primary" (click)="onSubmit()" [disabled]="!coverLetterForm.form.valid">Generate Document</button>
+  <button type="submit" class="btn btn-primary" (click)="onSubmit()" [disabled]="!coverLetterForm.form.valid">Generate
+    Document</button>
 </form>
