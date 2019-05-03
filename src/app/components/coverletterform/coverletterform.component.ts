@@ -40,12 +40,16 @@ export class CoverletterformComponent implements OnInit {
   fileChange(event) {
     this.fileInput = event.target.files[0];
 
+    const mimeType = event.target.files[0].type;
+    if (mimeType.match(/application\/vnd.openxmlformats-officedocument.wordprocessingml.document\/*/) == null) {
+      console.log('File must be *.docx');
+      return;
+    }
+
     const reader = new FileReader();
     this.fileUrl = event.target.files;
     reader.readAsDataURL(event.target.files[0]);
-    reader.onload = e => {
-      this.fileUrl = reader.result;
-    }
+    reader.onload = e => this.fileUrl = reader.result;
   }
 
   loadFile(url, callback) {
