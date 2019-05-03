@@ -12,7 +12,7 @@ import { saveAs } from 'file-saver';
 })
 export class CoverletterformComponent implements OnInit {
 
-  @ViewChild('fileInput') fileInput;
+  @ViewChild('fileInput') fileInput: File;
   fileUrl: any;
   info: CoverLetterInfo;
 
@@ -29,8 +29,7 @@ export class CoverletterformComponent implements OnInit {
     // Ensure correct type
     const mimeType = event.target.files[0].type;
     if (mimeType.match(/application\/vnd.openxmlformats-officedocument.wordprocessingml.document\/*/) == null) {
-      console.log('File must be *.docx');
-      return;
+      throw new TypeError('File must be *.docx');
     }
 
     // Retrieve file URL
@@ -59,7 +58,7 @@ export class CoverletterformComponent implements OnInit {
           name: error.name,
           stack: error.stack,
           properties: error.properties,
-        }
+        };
         console.log(JSON.stringify({ error: e }));
         throw error;
       }
@@ -73,5 +72,4 @@ export class CoverletterformComponent implements OnInit {
       saveAs(out, `MarielMartinez_CoverLetterAndResume_${this.info.companyName}.docx`);
     });
   }
-
 }
