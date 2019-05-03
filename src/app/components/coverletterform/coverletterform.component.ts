@@ -15,6 +15,7 @@ export class CoverletterformComponent implements OnInit {
   @ViewChild('fileInput') fileInput: File;
   fileUrl: any;
   info: CoverLetterInfo;
+  fileInputEvent: any;
 
   constructor() { }
 
@@ -26,7 +27,18 @@ export class CoverletterformComponent implements OnInit {
     this.fileUrl = value;
   }
 
+  // TODO: figure out a better way to implement this
+  selectCustomUrl() {
+    // Call fileChange so that it retrieves the file already uploaded
+    // Only relevant if if the user uses the file input AFTER selecting the radio button
+    if (this.fileInputEvent !== undefined) {
+      this.fileChange(this.fileInputEvent);
+    }
+  }
+
   fileChange(event) {
+    this.fileInputEvent = event;
+
     // Ensure file was given
     if (event.target.files.length === 0) { return; }
 
