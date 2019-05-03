@@ -22,6 +22,10 @@ export class CoverletterformComponent implements OnInit {
     this.info = new CoverLetterInfo();
   }
 
+  selectTemplate(value) {
+    this.fileUrl = value;
+  }
+
   fileChange(event) {
     // Ensure file was given
     if (event.target.files.length === 0) { return; }
@@ -69,7 +73,7 @@ export class CoverletterformComponent implements OnInit {
       });
 
       // Save the generated document
-      saveAs(out, `MarielMartinez_CoverLetterAndResume_${this.info.companyName}.docx`);
+      saveAs(out, `${this.info.candidateName} Cover Letter - ${this.info.companyName}.docx`);
     });
   }
 }

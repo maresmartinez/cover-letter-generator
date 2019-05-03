@@ -9,12 +9,20 @@
     </div>
     <div class="card-body">
       <div class="form-group">
-        <label for="fileInput">Cover Letter Template <span class="text-danger">.docx file*</span></label>
-        <input #fileInput="ngModel" name="fileInput"  [(ngModel)]="info.fileInput" id="fileInput" 
-        class="form-control-file" accept="application/vnd.openxmlformats-officedocument.wordprocessingml.document" 
-        type="file" (change)="fileChange($event)" required />
-        <div [hidden]="fileInput.valid || fileInput.pristine" class="alert alert-danger">Cover Letter Template is
-            Required</div>
+        <label for="coverLetterTemplate">Choose a template below, or upload your own <span class="text-danger">*</span></label>
+        <div class="form-check mb-3">
+          <input type="radio" #customCoverLetter="ngModel" [(ngModel)]="info.customCoverLetter" name="coverLetterTemplate" id="genericCoverLetter" class="form-check-input" (change)="selectTemplate($event.target.value)" value="assets/coverLetters/genericCoverLetter.docx">
+          <label for="genericCoverLetter">Generic Template</label><br>
+          <img [src]="'assets/img/genericCoverLetterScreenshot.png'" alt="Screenshot of generic cover letter" class="img-fluid">
+        </div>
+        <div class="form-check">
+            <input type="radio" #customCoverLetter="ngModel" [(ngModel)]="info.customCoverLetter" name="coverLetterTemplate" value="custom" id="customCoverLetter" class="form-check-input">
+            <label for="customCoverLetter" class="form-check-label">Upload Custom Template <span class="text-danger">.docx file*</span></label>
+            <input #fileInput="ngModel" name="fileInput"  [(ngModel)]="info.fileInput" id="fileInput" 
+            class="form-control-file" accept="application/vnd.openxmlformats-officedocument.wordprocessingml.document" 
+            type="file" (change)="fileChange($event)" [required]="info.customCoverLetter == 'custom'" />
+            <div class="alert alert-danger" *ngIf="info.customCoverLetter == 'custom' && !fileInput.valid">Upload a cover letter</div>
+        </div>
       </div>
     </div>
   </div>
@@ -24,19 +32,25 @@
       </div>
       <div class="card-body">
         <div class="form-group">
-          <label for="candiateName">Candidate Name <span class="text-danger">*</span></label>
-          <input type="text" class="form-control" id="candiateName" [(ngModel)]="info.candidateName" name="candidateName"
-            #candidateName="ngModel">
+          <label for="candidateName">Candidate Name <span class="text-danger">*</span></label>
+          <input type="text" class="form-control" id="candidateName" [(ngModel)]="info.candidateName" name="candidateName"
+            #candidateName="ngModel" required>
+          <div [hidden]="candidateName.valid || candidateName.pristine" class="alert alert-danger">Candidate Name is 
+            Required</div>
         </div>
         <div class="form-group">
-          <label for="candiateEmail">Candidate Email <span class="text-danger">*</span></label>
-          <input type="text" class="form-control" id="candiateEmail" [(ngModel)]="info.candiateEmail" name="candiateEmail"
-            #candiateEmail="ngModel">
+          <label for="candidateEmail">Candidate Email <span class="text-danger">*</span></label>
+          <input type="text" class="form-control" id="candidateEmail" [(ngModel)]="info.candidateEmail" name="candidateEmail"
+            #candidateEmail="ngModel" required>
+          <div [hidden]="candidateEmail.valid || candidateEmail.pristine" class="alert alert-danger">Candidate Email is 
+              Required</div>
         </div>
         <div class="form-group">
-          <label for="candiatePhone">Candidate Phone <span class="text-danger">*</span></label>
-          <input type="text" class="form-control" id="candiatePhone" [(ngModel)]="info.candiatePhone" name="candiatePhone"
-            #candiatePhone="ngModel">
+          <label for="candidatePhone">Candidate Phone <span class="text-danger">*</span></label>
+          <input type="text" class="form-control" id="candidatePhone" [(ngModel)]="info.candidatePhone" name="candidatePhone"
+            #candidatePhone="ngModel" required>
+          <div [hidden]="candidatePhone.valid || candidatePhone.pristine" class="alert alert-danger">Candidate Phone is 
+              Required</div>
         </div>
         <div class="form-group">
           <label for="candidatePortfolio">Candidate Portfolio</label>

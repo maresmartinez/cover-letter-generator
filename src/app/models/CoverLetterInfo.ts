@@ -13,4 +13,5 @@ export class CoverLetterInfo {
   candidateEmail: string;
   candidatePhone: string;
   candidatePortfolio: string;
+  customCoverLetter: boolean;
 }
