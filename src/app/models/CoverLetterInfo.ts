@@ -9,4 +9,8 @@ export class CoverLetterInfo {
   recruiterName?: string;
   recruiterTitle?: string;
   fileInput?: any;
+  candidateName: string;
+  candidateEmail: string;
+  candidatePhone: string;
+  candidatePortfolio: string;
 }

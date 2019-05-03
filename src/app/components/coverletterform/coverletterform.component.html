@@ -1,5 +1,7 @@
 <p class="lead">Enter the information for the job application below.</p>
-<p class="alert alert-info">This program will replace the following values in the cover letter template given: &#123;companyName&#125;, &#123;companyAddress&#125;, &#123;companyCity&#125;, &#123;companyProvince&#125;, &#123;companyPostal&#125;, &#123;jobTitle&#125; with the values below.</p>
+<p>This program will replace the following values in the cover letter template given: 
+  &#123;companyName&#125;, &#123;companyAddress&#125;, &#123;companyCity&#125;, &#123;companyProvince&#125;, 
+  &#123;companyPostal&#125;, &#123;jobTitle&#125; with the values below.</p>
 <form #coverLetterForm="ngForm">
   <div class="card mb-3">
     <div class="card-header">
@@ -8,12 +10,41 @@
     <div class="card-body">
       <div class="form-group">
         <label for="fileInput">Cover Letter Template <span class="text-danger">.docx file*</span></label>
-        <input #fileInput="ngModel" name="fileInput"  [(ngModel)]="info.fileInput" id="fileInput" class="form-control-file" accept="application/vnd.openxmlformats-officedocument.wordprocessingml.document" type="file" (change)="fileChange($event)" required />
+        <input #fileInput="ngModel" name="fileInput"  [(ngModel)]="info.fileInput" id="fileInput" 
+        class="form-control-file" accept="application/vnd.openxmlformats-officedocument.wordprocessingml.document" 
+        type="file" (change)="fileChange($event)" required />
         <div [hidden]="fileInput.valid || fileInput.pristine" class="alert alert-danger">Cover Letter Template is
             Required</div>
       </div>
     </div>
   </div>
+  <div class="card mb-3">
+      <div class="card-header">
+        <h6>Candidate Information</h6>
+      </div>
+      <div class="card-body">
+        <div class="form-group">
+          <label for="candiateName">Candidate Name <span class="text-danger">*</span></label>
+          <input type="text" class="form-control" id="candiateName" [(ngModel)]="info.candidateName" name="candidateName"
+            #candidateName="ngModel">
+        </div>
+        <div class="form-group">
+          <label for="candiateEmail">Candidate Email <span class="text-danger">*</span></label>
+          <input type="text" class="form-control" id="candiateEmail" [(ngModel)]="info.candiateEmail" name="candiateEmail"
+            #candiateEmail="ngModel">
+        </div>
+        <div class="form-group">
+          <label for="candiatePhone">Candidate Phone <span class="text-danger">*</span></label>
+          <input type="text" class="form-control" id="candiatePhone" [(ngModel)]="info.candiatePhone" name="candiatePhone"
+            #candiatePhone="ngModel">
+        </div>
+        <div class="form-group">
+          <label for="candidatePortfolio">Candidate Portfolio</label>
+          <input type="text" class="form-control" id="candidatePortfolio" [(ngModel)]="info.candidatePortfolio" name="candidatePortfolio"
+            #candidatePortfolio="ngModel">
+        </div>
+      </div>
+    </div>
   <div class="card mb-3">
     <div class="card-header">
       <h6>Recruiter Information</h6>
@@ -26,8 +57,8 @@
       </div>
       <div class="form-group">
         <label for="recruiterTitle">Rectruiter Title</label>
-        <input type="text" class="form-control" id="recruiterTitle" [(ngModel)]="info.recruiterTitle" name="recruiterTitle"
-          #recruiterTitle="ngModel">
+        <input type="text" class="form-control" id="recruiterTitle" [(ngModel)]="info.recruiterTitle" 
+          name="recruiterTitle" #recruiterTitle="ngModel">
       </div>
     </div>
   </div>
@@ -40,12 +71,13 @@
         <label for="companyName">Company Name <span class="text-danger">*</span></label>
         <input type="text" class="form-control" id="companyName" [(ngModel)]="info.companyName" name="companyName"
           #companyName="ngModel" required>
-        <div [hidden]="companyName.valid || companyName.pristine" class="alert alert-danger">Company Name is Required</div>
+        <div [hidden]="companyName.valid || companyName.pristine" class="alert alert-danger">Company Name is 
+          Required</div>
       </div>
       <div class="form-group">
         <label for="companyAddress">Company Address <span class="text-danger">*</span></label>
-        <input type="text" class="form-control" id="companyAddress" [(ngModel)]="info.companyAddress" name="companyAddress"
-          #companyAddress="ngModel" required>
+        <input type="text" class="form-control" id="companyAddress" [(ngModel)]="info.companyAddress" 
+          name="companyAddress" #companyAddress="ngModel" required>
         <div [hidden]="companyAddress.valid || companyAddress.pristine" class="alert alert-danger">Company Address is
           Required</div>
       </div>
@@ -60,8 +92,8 @@
         <label for="companyProvince">Company Province <span class="text-danger">*</span></label>
         <input type="text" class="form-control" id="companyProvince" [(ngModel)]="info.companyProvince"
           name="companyProvince" #companyProvince="ngModel" required>
-        <div [hidden]="companyProvince.valid || companyProvince.pristine" class="alert alert-danger">Company Province is
-          Required</div>
+        <div [hidden]="companyProvince.valid || companyProvince.pristine" class="alert alert-danger">Company Province 
+          is Required</div>
       </div>
       <div class="form-group">
         <label for="companyPostal">Company Postal Code <span class="text-danger">*</span></label>
