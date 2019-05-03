@@ -13,9 +13,8 @@ import { saveAs } from 'file-saver';
 export class CoverletterformComponent implements OnInit {
 
   @ViewChild('fileInput') fileInput;
-  info: CoverLetterInfo;
   fileUrl: any;
-  files: any[];
+  info: CoverLetterInfo;
 
   constructor() { }
 

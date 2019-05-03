@@ -7,5 +7,6 @@ export class CoverLetterInfo {
   companyPostal: string;
   jobTitle: string;
   recruiterName?: string;
-  recruiterTitle?: string; 
+  recruiterTitle?: string;
+  fileInput?: any;
 }
