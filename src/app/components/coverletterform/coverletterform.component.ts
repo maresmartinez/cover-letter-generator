@@ -4,7 +4,6 @@ import Docxtemplater from 'docxtemplater';
 import JSZip from 'jszip';
 import JSZipUtils from 'jszip-utils';
 import { saveAs } from 'file-saver';
-import { UploadServiceService } from '../services/upload-service.service';
 
 @Component({
   selector: 'app-coverletterform',
@@ -18,23 +17,10 @@ export class CoverletterformComponent implements OnInit {
   fileUrl: any;
   files: any[];
 
-  constructor(private uploadService: UploadServiceService) { }
+  constructor() { }
 
   ngOnInit() {
     this.info = new CoverLetterInfo();
-  }
-
-  addFile() {
-    const fi = this.fileInput.nativeElement;
-    if (fi.files && fi.files[0]) {
-      const fileToUpload = fi.files[0];
-      this.uploadService
-        .upload(fileToUpload)
-        .subscribe(res => {
-          console.log(res);
-        });
-    }
-    console.log(this.fileInput);
   }
 
   fileChange(event) {
