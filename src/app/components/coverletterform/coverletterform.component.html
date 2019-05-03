@@ -1,7 +1,8 @@
 <p class="lead">Enter the information for the job application below.</p>
+<p class="alert alert-info">This program will replace the following values in the cover letter template given: &#123;companyName&#125;, &#123;companyAddress&#125;, &#123;companyCity&#125;, &#123;companyProvince&#125;, &#123;companyPostal&#125;, &#123;jobTitle&#125; with the values below.</p>
 <form #coverLetterForm="ngForm">
   <div class="form-group">
-    <label for="fileInput">Cover Letter Template <span class="text-danger">*</span></label>
+    <label for="fileInput">Cover Letter Template <span class="text-danger">.docx file*</span></label>
     <input #fileInput="ngModel" name="fileInput"  [(ngModel)]="info.fileInput" id="fileInput" class="form-control-file" accept="application/vnd.openxmlformats-officedocument.wordprocessingml.document" type="file" (change)="fileChange($event)" required />
     <div [hidden]="fileInput.valid || fileInput.pristine" class="alert alert-danger">Cover Letter Template is
         Required</div>

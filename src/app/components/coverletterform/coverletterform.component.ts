@@ -23,14 +23,17 @@ export class CoverletterformComponent implements OnInit {
   }
 
   fileChange(event) {
-    this.fileInput = event.target.files[0];
+    // Ensure file was given
+    if (event.target.files.length === 0) { return; }
 
+    // Ensure correct type
     const mimeType = event.target.files[0].type;
     if (mimeType.match(/application\/vnd.openxmlformats-officedocument.wordprocessingml.document\/*/) == null) {
       console.log('File must be *.docx');
       return;
     }
 
+    // Retrieve file URL
     const reader = new FileReader();
     this.fileUrl = event.target.files;
     reader.readAsDataURL(event.target.files[0]);
@@ -48,7 +51,7 @@ export class CoverletterformComponent implements OnInit {
       const doc = new Docxtemplater().loadZip(zip);
       doc.setData(this.info);
       try {
-        // render the document (replace all occurences of {first_name} by John, {last_name} by Doe, ...)
+        // Replace placeholders with info values
         doc.render();
       } catch (error) {
         const e = {
@@ -58,15 +61,15 @@ export class CoverletterformComponent implements OnInit {
           properties: error.properties,
         }
         console.log(JSON.stringify({ error: e }));
-        // The error thrown here contains additional information when logged with JSON.stringify (it contains a property object).
         throw error;
       }
 
       const out = doc.getZip().generate({
         type: 'blob',
         mimeType: 'application/vnd.openxmlformats-officedocument.wordprocessingml.document'
-      }); // Output the document using Data-URI
+      });
 
+      // Save the generated document
       saveAs(out, `MarielMartinez_CoverLetterAndResume_${this.info.companyName}.docx`);
     });
   }
